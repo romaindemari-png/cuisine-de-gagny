@@ -13,7 +13,8 @@
   --rouge:#E61920; --orange:#F36A21; --jaune:#F5A623; --vert:#5BB535;
 }
 @media (prefers-reduced-motion:no-preference){ html { scroll-behavior:smooth; } }
-body { font-family:'Avenir',sans-serif; font-weight:300; background:var(--creme); color:var(--noir); overflow-x:hidden; }
+html { overflow-x:hidden; }
+body { font-family:'Avenir',sans-serif; font-weight:300; background:var(--creme); color:var(--noir); overflow-x:hidden; width:100%; }
 
 /* CTA cadre ligné */
 .btn-outline { display:inline-block; font-family:'AvCondLight',sans-serif; font-weight:300; font-size:13px; letter-spacing:0.3em; text-transform:uppercase; padding:1rem 2rem; border:1px solid currentColor; text-decoration:none; transition:all 0.25s; }
@@ -113,7 +114,7 @@ body { font-family:'Avenir',sans-serif; font-weight:300; background:var(--creme)
 
 /* ───── GALERIE ───── */
 .section-galerie { background:var(--creme2); min-height:100vh; padding:7rem 5rem; position:relative; overflow:visible; z-index:6; display:flex; flex-direction:column; justify-content:center; }
-.galerie-marquee { position:absolute; top:-70px; left:0; right:0; height:180px; display:flex; align-items:center; z-index:6; pointer-events:none; overflow:visible; white-space:nowrap; }
+.galerie-marquee { position:absolute; top:-70px; left:0; right:0; height:180px; display:flex; align-items:center; z-index:6; pointer-events:none; overflow:hidden; white-space:nowrap; }
 .galerie-marquee .track { display:inline-block; font-family:'Cormorant',serif; font-weight:300; font-size:clamp(90px,13vw,200px); text-transform:uppercase; line-height:0.8; opacity:0.92; will-change:transform; animation:marquee-scroll 22s linear infinite; }
 .galerie-marquee .track b { font-weight:300; }
 .galerie-marquee .track .v { color:var(--rouge); }
@@ -226,7 +227,7 @@ footer { background:var(--noir); padding:3rem 5rem 2.5rem; }
   .hero-burger { width:42px; height:42px; }
   .hero-cta-mobile { display:inline-block; margin-top:2rem; background:var(--rouge); color:var(--creme); font-family:'AvCondLight',sans-serif; font-weight:300; font-size:12px; letter-spacing:0.24em; text-transform:uppercase; padding:0.9rem 1.8rem; text-decoration:none; }
   .kente-band.left { width:64px; }
-  .kente-band.right { width:74px; }
+  .kente-band.right { right:0; width:74px; }
   .kente-band img { object-fit:cover; object-position:center; }
   .hero-center { top:50%; width:100%; padding:0 72px; }
   .hero-title { font-size:clamp(54px,15vw,96px); line-height:0.85; }
