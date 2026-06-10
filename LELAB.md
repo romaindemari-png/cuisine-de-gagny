@@ -45,7 +45,7 @@ Mémoire projet pour les sessions Claude Code. Mise à jour après chaque phase.
 2. **Histoire** (fond rouge) — photo Gagny détourée collée en bas gauche ; titre "DE BAMAKO À CHAVE" décalé à 50%, texte+CTA à 62% ; CTA → article Jeune Afrique
 3. **Citation** (fond crème) — "Ma cuisine est une cuisine de rencontres & de mélanges" (rencontres=orange, de mélanges=vert)
 4. **Carte** (fond orange, typo crème) — 3 colonnes Mer/Terre/Végé ; mobile = carrousel ; noms de plats Cormorant bas de casse ; hover = thumbnail photo
-5. **Galerie** (fond crème) — 3 photos + marquee "FAIT MAISON" rouge qui défile en auto et mord entre les sections
+5. **Galerie** (fond crème) — carrousel horizontal scroll-snap (desktop + mobile), slides de hauteurs variées (tall/wide), drag souris + flèches + dots ; marquee "FAIT MAISON" rouge qui défile en auto et mord entre les sections (clippé en overflow:hidden)
 6. **Épicerie** (fond crème) — "ÉPICERIE FINE & TRAITEUR" (traiteur orange) + photo Gagny & Julie en cadre fin ; légende sobre
 7. **Réserve** (fond rouge) — "ALORS, ON RÉSERVE ?" + CTA jaune
 8. **Infos** (fond crème) — 3 colonnes Horaires/Contact/Adresse avec pictos line + Google Map (filtre charte) en dessous
@@ -68,6 +68,12 @@ Mémoire projet pour les sessions Claude Code. Mise à jour après chaque phase.
 - **Mobile** : padding latéral hero pour que les titres ne mordent jamais sur les bandes kente + breakpoint `<380px` (bandes/titres réduits) ; carrousel carte vérifié.
 - **Accessibilité** : 9 `alt` ajoutés (kente décoratives = `alt=""`, photos/plats descriptifs), `title` + `loading="lazy"` sur l'iframe Google Map, `lang="fr"` déjà présent.
 - ⚠️ **Contraste à arbitrer** (DA non modifiée) : crème/orange ~2,8:1 et jaune/rouge ~2,3:1 sous le seuil WCAG AA — choix de DA validé, signalé mais non touché.
+
+## Corrections bugs (juin 2026)
+- **Scroll horizontal mobile** : `overflow-x:hidden` sur `html` + `body` ; marquee galerie passé en `overflow:hidden` ; bande kente droite réinitialisée à `right:0` en mobile (elle restait à `right:-6.4vh`, d'où la marge blanche au swipe). Validé : `scrollWidth == clientWidth`.
+- **Centrage logo header** : grid mobile remise sur 3 colonnes `1fr auto 1fr` (logo col2, burger col3) — elle était à `1fr auto`, le logo centré dans la colonne gauche seulement. Validé : center logo == center viewport à 360/390/500/768px.
+- **Galerie → carrousel** : voir section 5. JS `#galCarousel` (drag souris, flèches `.gal-arrow`, dots `.gal-dot` actifs au scroll).
+- **Indicateur carte mobile** : 3 dots `.carte-dot` (un par catégorie), actif en rouge, suit le scroll via rAF ; `#carteGrid`. Cachés en desktop.
 
 ## Backlog / idées futures
 - CMS pour que Gagny édite sa carte (pattern LeLab+)
