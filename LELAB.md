@@ -54,12 +54,20 @@ Mémoire projet pour les sessions Claude Code. Mise à jour après chaque phase.
 ## Animations (2026)
 - Stagger reveal (éléments montent en cascade à l'entrée de section, IntersectionObserver)
 - Intro hero (bandes se déploient + mots BIO/LOCAL/MAISON en séquence)
-- Curseur personnalisé (point rouge + anneau, grossit au survol) — desktop only
+- Curseur personnalisé (point rouge + anneau, grossit au survol) — desktop only, init gardé derrière `matchMedia('(hover:hover) and (pointer:fine)')` (zéro rAF/listener sur mobile)
 - Marquee "FAIT MAISON" défilement auto CSS
 - Flottement kente léger
 - Plat hover → thumbnail
 - **PAS de scroll fluide JS** (testé, buggait — retiré, scroll natif conservé)
 - **PAS de parallaxe sur éléments collés au bord** (créait des coupes — retiré)
+
+## Audit technique (juin 2026)
+- **Grain renforcé** : `.grain-layer::after` opacité 0.22 → **0.50** (toutes sections), `.hero::after` 0.18 → **0.45**. Texture papier imprimé assumée, validée au rendu (desktop + mobile).
+- **CSS nettoyé** : suppression code mort (`.hero-bol`, `.parallax`, `html.has-smooth`, `.h-title`, `.eyebrow`, variable `--rose`, `.galerie-marquee .track span` doublon) ; `scroll-behavior` dédupliqué (gardé la version `prefers-reduced-motion`) ; bloc mobile *histoire* consolidé (était déclaré 3×).
+- **JS nettoyé** : `parallaxLoop()` mort supprimé (rAF infini pour 0 élément `[data-parallax]`) ; curseur conditionné au pointeur fin ; sélecteur `.gp` dédupliqué.
+- **Mobile** : padding latéral hero pour que les titres ne mordent jamais sur les bandes kente + breakpoint `<380px` (bandes/titres réduits) ; carrousel carte vérifié.
+- **Accessibilité** : 9 `alt` ajoutés (kente décoratives = `alt=""`, photos/plats descriptifs), `title` + `loading="lazy"` sur l'iframe Google Map, `lang="fr"` déjà présent.
+- ⚠️ **Contraste à arbitrer** (DA non modifiée) : crème/orange ~2,8:1 et jaune/rouge ~2,3:1 sous le seuil WCAG AA — choix de DA validé, signalé mais non touché.
 
 ## Backlog / idées futures
 - CMS pour que Gagny édite sa carte (pattern LeLab+)
