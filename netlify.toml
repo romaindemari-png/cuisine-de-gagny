@@ -1,0 +1,20 @@
+# Configuration Netlify — La Cuisine de Gagny
+# Site vitrine single-file, aucun build nécessaire
+
+[build]
+  publish = "."
+  command = ""
+
+# Forcer HTTPS et de bons headers de sécurité / cache
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Le HTML ne doit pas être mis en cache agressivement (mises à jour fréquentes)
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
