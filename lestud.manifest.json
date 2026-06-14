@@ -1,0 +1,15 @@
+{
+  "manifest_version": "1.0",
+  "client": { "name": "La Cuisine de Gagny", "slug": "gagny" },
+  "repo": { "github": "romaindemari-png/cuisine-de-gagny", "default_branch": "main" },
+  "deploy": {
+    "provider": "netlify",
+    "site_name": "cuisine-de-gagny",
+    "url": "https://cuisine-de-gagny.netlify.app",
+    "publish_dir": "."
+  },
+  "offer": { "stage": "vitrine", "is_fork": false },
+  "template": { "base_repo": null, "family": "food", "version": null },
+  "separation": null,
+  "instagram": null
+}
